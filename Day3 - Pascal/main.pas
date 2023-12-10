@@ -57,30 +57,27 @@ begin
         ReadWholeFile := s;
 end;
 
-
-
-// main function
-const
-        C_FName = 'sample.txt';
+function SolveDay1(s: string): Integer;
 var
-        s: string;
         lines: Array of string;
-        l: string;
+        l: String;
+        n: Integer;
         numbers: Array of Number;
         tempNumber: Number;
         tempCoord: Coordinate;
         c: char;
-        n: Integer;
         Code: Integer;
         y: Integer;
-        sb: string;
+        sb: String;
         start: Integer;
         j: Integer;
         i: Integer;
+        position: Integer;
+        isNumeric: boolean;
+        currX: Integer;
+        currY: Integer;
+        num: Integer;
 begin
-        writeln('Input File: ',C_FName);
-        writeln('Current Directory: ', GetCurrentDir);
-        s := ReadWholeFile(C_FName);
         lines := SplitString(s, sLineBreak);
 
         SetLength(numbers, 0);
@@ -121,5 +118,45 @@ begin
                 end;
         end;
 
+        y := 0;
+
+        for num in numbers do
+        begin
+                for i:=0 to num.Length-1 do
+                begin
+                        currX := num.coords.x + i;
+                        currY := num.coords.y;
+                        c := lines[currY][currX];
+                        writeln(c);
+                end;
+        end;
+        SolveDay1:=69;
+end;
+
+
+
+// main function
+const
+        C_FName = 'sample.txt';
+var
+        s: string;
+        lines: Array of string;
+        l: string;
+        numbers: Array of Number;
+        tempNumber: Number;
+        tempCoord: Coordinate;
+        c: char;
+        n: Integer;
+        Code: Integer;
+        y: Integer;
+        sb: string;
+        start: Integer;
+        j: Integer;
+        i: Integer;
+begin
+        writeln('Input File: ',C_FName);
+        writeln('Current Directory: ', GetCurrentDir);
+        s := ReadWholeFile(C_FName);
+        SolveDay1(s);
         readln;
 end.
